@@ -1,0 +1,9 @@
+<mapper namespace="user">
+    <select id="selectAll" resultType="com.faw.cloud.domain.entity.UserDO">
+        select * from tb_user
+    </select>
+    <select id="selectOne" resultType="com.faw.cloud.domain.entity.UserDO"
+            parameterType="com.faw.cloud.domain.entity.UserDO">
+        select * from tb_user where id = #{id} and username = #{username}
+    </select>
+</mapper>
