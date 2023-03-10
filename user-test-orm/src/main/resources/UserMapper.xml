@@ -1,4 +1,4 @@
-<mapper namespace="user">
+<mapper namespace="com.faw.cloud.dao.UserDao">
     <select id="selectAll" resultType="com.faw.cloud.domain.entity.UserDO">
         select * from tb_user
     </select>
