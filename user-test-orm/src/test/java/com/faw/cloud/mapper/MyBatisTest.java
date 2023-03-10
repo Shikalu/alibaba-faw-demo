@@ -1,6 +1,5 @@
 package com.faw.cloud.mapper;
 
-import com.faw.cloud.dao.UserDao;
 import com.faw.cloud.domain.entity.UserDO;
 import com.faw.cloud.orm.session.SqlSession;
 import com.faw.cloud.orm.session.SqlSessionFactory;
@@ -44,8 +43,8 @@ public class MyBatisTest {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryBuilder.build("sqlMapConfig.xml");
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        UserDao userDao = sqlSession.getMapper(UserDao.class);
-        List<UserDO> userDOList = userDao.selectAll();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        List<UserDO> userDOList = userMapper.selectAll();
         for (UserDO userDO : userDOList) {
             System.out.println(userDO);
         }
@@ -56,11 +55,11 @@ public class MyBatisTest {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryBuilder.build("sqlMapConfig.xml");
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        UserDao userDao = sqlSession.getMapper(UserDao.class);
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         UserDO userDO = new UserDO();
         userDO.setId(1L);
         userDO.setUsername("username1");
-        UserDO one = userDao.selectOne(userDO);
+        UserDO one = userMapper.selectOne(userDO);
         System.out.println(one);
     }
 }

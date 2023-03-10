@@ -2,7 +2,6 @@ package com.ebanma.cloud.designPattern.builder;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
-import org.junit.Test;
 
 /**
  * 产品类
@@ -11,7 +10,7 @@ import org.junit.Test;
  * @date 2023/03/02
  */
 @Data
-public class Product {
+public class ProductDemo {
 
     private String background;
 
@@ -21,40 +20,39 @@ public class Product {
 
     public static class Builder {
 
-        private Product product;
+        private ProductDemo productDemo;
 
         public Builder() {
-            this.product =new Product();
+            this.productDemo =new ProductDemo();
         }
 
-        public Product build() {
-            return product;
+        public ProductDemo build() {
+            return productDemo;
         }
 
         public Builder buildBackground(String background) {
-            product.setBackground(background);
+            productDemo.setBackground(background);
             return this;
         }
 
         public Builder buildIcon(String icon) {
-            product.setIcon(icon);
+            productDemo.setIcon(icon);
             return this;
         }
 
         public Builder buildSounds(String sounds) {
-            product.setSounds(sounds);
+            productDemo.setSounds(sounds);
             return this;
         }
     }
 
-    @Test
-    public void testBuilder() {
-        Product.Builder builder = new Builder();
-        Product product = builder.buildBackground("my background")
+    public static void main(String[] args) {
+        ProductDemo.Builder builder = new Builder();
+        ProductDemo productDemo = builder.buildBackground("my background")
                 .buildSounds("my sounds")
                 .buildIcon("my icon")
                 .build();
-        System.out.println(JSON.toJSONString(product,true));
-        System.out.println(product);
+        System.out.println(JSON.toJSONString(productDemo,true));
+        System.out.println(productDemo);
     }
 }

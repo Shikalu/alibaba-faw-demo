@@ -1,6 +1,8 @@
 package com.faw.cloud.orm.model;
 
 /**
+ * 映射语句。对应单个的mapper.xml。各个属性是sql语句上的各个属性。
+ *
  * @author 鹿胜宝
  * @date 2023/03/09
  */

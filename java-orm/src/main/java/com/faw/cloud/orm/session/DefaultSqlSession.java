@@ -30,8 +30,8 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T selectOne(String statementId, Object... objects) throws SQLException, IntrospectionException, NoSuchFieldException, ClassNotFoundException, InvocationTargetException, IllegalAccessException, InstantiationException {
-        List<Object> list = selectList(statementId, objects);
+    public <T> T selectOne(String statementId, Object... params) throws SQLException, IntrospectionException, NoSuchFieldException, ClassNotFoundException, InvocationTargetException, IllegalAccessException, InstantiationException {
+        List<Object> list = selectList(statementId, params);
         if (list.size() == 1) {
             return (T) list.get(0);
         }
@@ -39,20 +39,32 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T insert(String statementId, Object... objects) {
-        return null;
+    public int insert(String statementId, Object... params) {
+        MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementId);
+        Executor executor = new DefaultExecutor();
+        return executor.insert(configuration, mappedStatement, params);
     }
 
     @Override
     public <T> T getMapper(Class<?> mapperClass) {
+
+        // ClassLoader loader, 用哪个类加载器去加载代理对象
+        // Class<?>[] interfaces, 动态代理类需要实现的接口
+        // InvocationHandler h, 动态代理类需要实现的业务逻辑，会调用h里面的invoke方法去执行
         Object proxyInstance = Proxy.newProxyInstance(DefaultSqlSession.class.getClassLoader(), new Class[]{mapperClass}, new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                // Object proxy, 当前代理对象的引用
+                // Method method, 当前被调用方法的引用
+                // Object[] args, 当前被调用方法的参数
                 String methodName = method.getName();
                 String className = method.getDeclaringClass().getName();
                 String statementId = className + "." + methodName;
 
+                //拿到方法返回值
                 Type genericReturnType = method.getGenericReturnType();
+                // ParameterizedType就是参数化类型的意思
+                // 声明类型中带有“<>”的都是参数化类型，我们这里特指 selectList 的返回值 List<T>
                 if (genericReturnType instanceof ParameterizedType) {
                     List<Object> objects = selectList(statementId);
                     return objects;

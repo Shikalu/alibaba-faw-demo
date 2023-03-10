@@ -1,12 +1,8 @@
 package com.ebanma.cloud.sourceCode;
 
-import com.ebanma.cloud.designPattern.adapter.MyArrays;
 import org.junit.Test;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author 鹿胜宝

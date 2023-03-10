@@ -1,4 +1,4 @@
-package com.ebanma.cloud.threadpool;
+package com.ebanma.cloud.threadPool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

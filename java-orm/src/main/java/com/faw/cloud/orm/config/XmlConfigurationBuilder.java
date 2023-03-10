@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Properties;
 
 /**
+ * XML解析为Configuration文件
+ *
  * @author 鹿胜宝
  * @date 2023/03/09
  */

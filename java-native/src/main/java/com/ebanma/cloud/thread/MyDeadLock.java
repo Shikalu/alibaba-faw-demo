@@ -1,8 +1,6 @@
 package com.ebanma.cloud.thread;
 
 
-import org.junit.Test;
-
 /**
  * 死锁
  *

@@ -1,6 +1,7 @@
 package com.faw.cloud.orm.util;
 
 /**
+ * 参数映射
  * @author 鹿胜宝
  * @date 2023/03/09
  */

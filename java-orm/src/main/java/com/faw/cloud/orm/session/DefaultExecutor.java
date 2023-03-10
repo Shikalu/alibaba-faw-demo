@@ -82,6 +82,11 @@ public class DefaultExecutor implements Executor {
         return (List<E>) resultList;
     }
 
+    @Override
+    public int insert(Configuration configuration, MappedStatement mappedStatement, Object... params) {
+        return 0;
+    }
+
     private BoundSql getBoundSql(String sql) {
         //1.将#{}用？代替
         ParameterMappingTokenHandler parameterMappingTokenHandler = new ParameterMappingTokenHandler();

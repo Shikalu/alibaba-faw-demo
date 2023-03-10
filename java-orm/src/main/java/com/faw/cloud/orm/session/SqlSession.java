@@ -15,7 +15,9 @@ public interface SqlSession {
 
     <E> List<E> selectList(String statementId, Object... params) throws SQLException, IntrospectionException, NoSuchFieldException, ClassNotFoundException, InvocationTargetException, IllegalAccessException, InstantiationException;
 
-    <T> T selectOne(String statementId, Object... objects) throws SQLException, IntrospectionException, NoSuchFieldException, ClassNotFoundException, InvocationTargetException, IllegalAccessException, InstantiationException;
+    <T> T selectOne(String statementId, Object... params) throws SQLException, IntrospectionException, NoSuchFieldException, ClassNotFoundException, InvocationTargetException, IllegalAccessException, InstantiationException;
+
+    int insert(String statementId, Object... params);
 
     <T> T getMapper(Class<?> mapperClass);
 }

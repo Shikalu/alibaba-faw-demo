@@ -6,12 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Sql语句封装
+ *
  * @author 鹿胜宝
  * @date 2023/03/09
  */
 public class BoundSql {
-    private String sqlText; //解析过后的sql
 
+    /**
+     * 解析过后的sql
+     */
+    private String sqlText;
+
+    /**
+     * 参数映射列表
+     */
     private List<ParameterMapping> parameterMappingList = new ArrayList<>();
 
     public BoundSql(String sqlText, List<ParameterMapping> parameterMappingList) {

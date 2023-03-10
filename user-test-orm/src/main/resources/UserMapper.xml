@@ -1,4 +1,4 @@
-<mapper namespace="com.faw.cloud.dao.UserDao">
+<mapper namespace="com.faw.cloud.mapper.UserMapper">
     <select id="selectAll" resultType="com.faw.cloud.domain.entity.UserDO">
         select * from tb_user
     </select>
@@ -6,4 +6,8 @@
             parameterType="com.faw.cloud.domain.entity.UserDO">
         select * from tb_user where id = #{id} and username = #{username}
     </select>
+    <insert id="insert" resultType="com.faw.cloud.domain.entity.UserDO"
+            parameterType="java.lang.Integer">
+        insert into tb_user (username,password,email,age,phone,created,modified,creator,operator,deleted,version) values (#{username},#{password},#{email},#{age},#{phone},#{created},#{modified},#{creator},#{operator},#{deleted},#{version})
+    </insert>
 </mapper>

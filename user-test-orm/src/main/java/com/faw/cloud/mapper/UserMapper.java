@@ -1,4 +1,4 @@
-package com.faw.cloud.dao;
+package com.faw.cloud.mapper;
 
 import com.faw.cloud.domain.entity.UserDO;
 import org.dom4j.DocumentException;
@@ -12,7 +12,7 @@ import java.util.List;
  * @author 鹿胜宝
  * @date 2023/03/09
  */
-public interface UserDao {
+public interface UserMapper {
 
     UserDO selectOne(UserDO user) throws DocumentException, SQLException, IntrospectionException, NoSuchFieldException, ClassNotFoundException, InvocationTargetException, IllegalAccessException, InstantiationException;
 
