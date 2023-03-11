@@ -18,6 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 默认执行器
+ * 1.获取数据库链接
+ * 2.定义sql语句?表示占位符:获取sql语句
+ * 3.定义sql语句?表示占位符:转换sql语句
+ * 4.获取预处理statement
+ * 5.设置参数，第一个参数为sql语句中参数的序号(从1开始)，第二个参数为设置的参数值
+ * 6.向数据库发出sql执行查询，查询出结果集
+ * 7.遍历查询结果集
+ * 8.并封装返回对象
+ *
  * @author 鹿胜宝
  * @date 2023/03/09
  */
@@ -28,7 +38,11 @@ public class DefaultExecutor implements Executor {
     public <E> List<E> query(Configuration configuration, MappedStatement mappedStatement, Object... params)
             throws SQLException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException, IntrospectionException, InstantiationException, InvocationTargetException {
 
-        //2.获取数据库连接
+        // 1.加载驱动
+        // 2.获取数据库连接
+        // 在使用getConnection()获取连接的时候就会通过Druid的init()初始化方法的resolveDriver()加载数据库驱动。
+        // 参考https://www.cnblogs.com/liconglong/p/16257629.html
+        // 参考https://www.cnblogs.com/silenceshining/p/14280140.html?ivk_sa=1024320u
         Connection connection = configuration.getDataSource().getConnection();
 
         //3.定义sql语句
