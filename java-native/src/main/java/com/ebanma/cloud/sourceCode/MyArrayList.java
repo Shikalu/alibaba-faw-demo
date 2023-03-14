@@ -12,6 +12,9 @@ import java.util.function.Consumer;
  * @date 2023/03/06
  */
 public class MyArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, Serializable {
+
+    private static final long serialVersionUID = 1373837418632912607L;
+
     //初始数组大小
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -32,6 +35,7 @@ public class MyArrayList<E> extends AbstractList<E> implements List<E>, RandomAc
     public Iterator<E> iterator() {
         return new Itr();
     }
+
     private class Itr implements Iterator<E> {
         int cursor;       // index of next element to return
         int lastRet = -1; // index of last element returned; -1 if no such

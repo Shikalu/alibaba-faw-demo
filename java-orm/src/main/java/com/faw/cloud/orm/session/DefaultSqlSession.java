@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DefaultSqlSession implements SqlSession {
 
-    private Configuration configuration;
+    private final Configuration configuration;
 
     public DefaultSqlSession(Configuration configuration) {
         this.configuration = configuration;
