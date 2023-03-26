@@ -88,4 +88,11 @@ public class Tmp {
 
         Thread.sleep(5000);
     }
+
+    @Test
+    public void test3() {
+        HashMap<String, String> map = new HashMap<String,String>();
+        map.put("a", "1");
+        System.out.println(map.get("a"));
+    }
 }
