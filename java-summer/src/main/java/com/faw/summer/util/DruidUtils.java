@@ -1,4 +1,4 @@
-package com.faw.util;
+package com.faw.summer.util;
 
 import com.alibaba.druid.pool.DruidDataSource;
 

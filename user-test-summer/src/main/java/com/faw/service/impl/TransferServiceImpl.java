@@ -16,16 +16,13 @@ public class TransferServiceImpl implements TransferService {
         this.accountDao = accountDao;
     }
 
-    //给内省注入使用
+    //给内省注入使用，内省getter与setter方法都需要
     public AccountDao getAccountDao() {
         return accountDao;
     }
 
     @Override
     public void transfer(String fromCardNo, String toCardNo, int money) throws Exception {
-//        Connection connection = DruidUtils.getInstance().getConnection();
-//        connection.setAutoCommit(false);
-//        try {
         Account from = accountDao.queryAccountByCardNo(fromCardNo);
         Account to = accountDao.queryAccountByCardNo(toCardNo);
 
@@ -33,13 +30,8 @@ public class TransferServiceImpl implements TransferService {
         to.setMoney(to.getMoney() + money);
 
         accountDao.updateAccountByCardNo(from);
-//            int i = 1/0;
+        //制造异常
+//        int i = 1 / 0;
         accountDao.updateAccountByCardNo(to);
-//            connection.commit();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            connection.rollback();
-//            throw e;
-//        }
     }
 }

@@ -2,6 +2,7 @@ package com.faw.web;
 
 import com.faw.domain.Result;
 import com.faw.service.TransferService;
+import com.faw.summer.aop.ProxyFactory;
 import com.faw.summer.core.BeanFactory;
 import com.faw.util.JsonUtils;
 
@@ -19,7 +20,11 @@ import java.io.IOException;
 @WebServlet(name = "transferServlet",urlPatterns = "/transferServlet")
 public class TransferServlet extends HttpServlet {
 
-    private TransferService transferService = (TransferService) BeanFactory.getBean("transferService");
+    // 从工厂获取委托对象（委托对象是增强了事务控制的功能）
+    // 首先从BeanFactory获取到proxyFactory代理工厂的实例化对象
+    private ProxyFactory proxyFactory = (ProxyFactory) BeanFactory.getBean("proxyFactory");
+    private TransferService transferService = (TransferService) proxyFactory.getCglibProxy(BeanFactory.getBean("transferService"));
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
