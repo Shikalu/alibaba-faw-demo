@@ -40,7 +40,7 @@ public class ProxyFactory {
                     transactionManager.rollback();
                     throw new Exception(e);
                 } finally {
-                    transactionManager.close();
+                    transactionManager.remove();
                 }
                 return result;
             }
@@ -67,7 +67,7 @@ public class ProxyFactory {
                     transactionManager.rollback();
                     throw new Exception(e);
                 }  finally {
-                    transactionManager.close();
+                    transactionManager.remove();
                 }
                 return result;
             }

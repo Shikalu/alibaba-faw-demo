@@ -44,12 +44,11 @@ public class TransactionManager {
     }
 
     /**
-     * 关闭连接
+     * 移除threadLocal
      *
      * @author 鹿胜宝
      */
-    public void close() throws SQLException {
-        connectionUtils.getCurrentThreadConnection().close();
+    public void remove() throws SQLException {
         connectionUtils.removeCurrentThreadConnection();
     }
 }
