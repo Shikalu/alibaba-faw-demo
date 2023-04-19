@@ -4,13 +4,11 @@ import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -94,5 +92,17 @@ public class Tmp {
         HashMap<String, String> map = new HashMap<String,String>();
         map.put("a", "1");
         System.out.println(map.get("a"));
+    }
+
+    @Test
+    public void test4() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = new Date();
+        Date date2 = new Date(2023-1900, Calendar.APRIL,1,12,12,12);
+        String d1 = sdf.format(date1);
+        String d2 = sdf.format(date2);
+        System.out.println(d1);
+        System.out.println(d2);
+        System.out.println(sdf.format(date1).compareTo(sdf.format(date2)));
     }
 }
