@@ -7,6 +7,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import org.springframework.stereotype.Component;
 
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,8 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
         channelList.remove(channel);
-        System.out.println("【系统消息】" + channel.remoteAddress().toString().substring(1) + "下线了");
+        InetSocketAddress ipSocket = (InetSocketAddress) (channel.remoteAddress());
+        System.out.println("【系统消息】" + ipSocket.getAddress().getHostAddress() + "下线了");
     }
 
     /**
