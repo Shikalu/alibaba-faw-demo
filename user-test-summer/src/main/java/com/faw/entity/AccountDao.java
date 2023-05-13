@@ -1,4 +1,4 @@
-package com.faw.dao;
+package com.faw.entity;
 
 import com.faw.domain.Account;
 

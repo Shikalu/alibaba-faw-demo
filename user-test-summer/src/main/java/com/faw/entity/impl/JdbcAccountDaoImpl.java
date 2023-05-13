@@ -1,6 +1,6 @@
-package com.faw.dao.impl;
+package com.faw.entity.impl;
 
-import com.faw.dao.AccountDao;
+import com.faw.entity.AccountDao;
 import com.faw.domain.Account;
 import com.faw.summer.util.ConnectionUtils;
 
