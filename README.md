@@ -5,6 +5,7 @@
 
 - java-orm 手写orm框架练习
 - java-rpc-v1 基于Netty的RPC框架练习v1
+- java-rpc-v2 基于Netty、ZK的RPC框架练习v2
 - java-spring-boot-starter 手写starter练习
 - java-summer 手写spring IOC、AOP、MVC练习
 - java-webchat 基于Netty的WebSocket网页版聊天室练习
