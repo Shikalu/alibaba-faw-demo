@@ -12,6 +12,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.2</version>
+        <relativePath/>  <!-- parent里写的并不是xxx的上一级，而是继承了springboot,需要加上，否则会有个error，貌似不影响使用，但不规范-->
     </parent>
     <groupId>com.faw</groupId>
     <artifactId>ali-java-rpc-v1</artifactId>
