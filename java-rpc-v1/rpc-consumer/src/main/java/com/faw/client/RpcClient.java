@@ -91,7 +91,7 @@ public class RpcClient {
     /**
      * 提供消息发送的方法
      *
-     * @param msg 味精
+     * @param msg 消息
      * @return {@link Object }
      * @author 鹿胜宝
      */

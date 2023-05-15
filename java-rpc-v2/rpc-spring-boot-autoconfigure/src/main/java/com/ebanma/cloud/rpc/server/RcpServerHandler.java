@@ -23,7 +23,7 @@ public class RcpServerHandler extends SimpleChannelInboundHandler<String> {
      * 读就绪事件
      *
      * @param ctx ctx
-     * @param msg 味精
+     * @param msg 消息
      * @author 鹿胜宝
      */
     @Override

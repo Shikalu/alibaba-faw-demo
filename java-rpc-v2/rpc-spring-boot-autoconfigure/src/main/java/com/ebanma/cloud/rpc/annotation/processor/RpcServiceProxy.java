@@ -72,7 +72,7 @@ public class RpcServiceProxy<T> implements InvocationHandler {
         // 设置参数
         rpcRequest.setParameters(args);
 
-        // 发送消息
+        // 发送消息，代理类rpc远程调用
         RpcResponse response = nettyClient.sendMessage(rpcRequest);
 
         if (response == null) {

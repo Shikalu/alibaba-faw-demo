@@ -82,7 +82,7 @@ public class NettyClient {
         try {
             String s = JSONUtil.toJsonStr(msg);
             f.channel().writeAndFlush(s);
-
+            //利用countDownLatch，阻塞等待2s后返回。
             rpcResponse = future.get(2000, TimeUnit.MILLISECONDS);
         } catch (Exception e) {
             e.printStackTrace();
