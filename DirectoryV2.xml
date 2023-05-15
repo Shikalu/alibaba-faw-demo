@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?> 
  <trees>
      <tree path="/java-orm/src/main/java/com/faw/cloud/orm/session" title="会话管理"/>
- </trees>
+     <tree path="/java-rpc-v2/rpc-spring-boot-autoconfigure/src/main/java/com/ebanma/cloud/rpc/annotation"
+           title="自定义注解及其处理逻辑"/>
+     <tree path="/java-rpc-v2/rpc-spring-boot-autoconfigure/src/main/java/com/ebanma/cloud/rpc/client"
+           title="Netty 客户端"/>
+     <tree path="/java-rpc-v2/rpc-spring-boot-autoconfigure/src/main/java/com/ebanma/cloud/rpc/config"
+           title="自动配置"/>
+     <tree path="/java-rpc-v2/rpc-spring-boot-autoconfigure/src/main/java/com/ebanma/cloud/rpc/model"
+           title="公共模型及常量"/>
+     <tree path="/java-rpc-v2/rpc-spring-boot-autoconfigure/src/main/java/com/ebanma/cloud/rpc/server"
+           title="Netty 服务端"/>
+    <tree path="/java-rpc-v2/rpc-spring-boot-autoconfigure/src/main/java/com/ebanma/cloud/rpc/utils"
+          title="ZK 工具类及其他"/>
+</trees>

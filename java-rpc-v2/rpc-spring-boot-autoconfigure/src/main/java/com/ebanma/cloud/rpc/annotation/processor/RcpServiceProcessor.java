@@ -12,15 +12,14 @@ import java.util.Objects;
 
 /**
  * 该 BeanPostProcessor 用于注入远程服务接口代理类
+ * 实现aware获取上下文，在bean实例化之前，通过反射解析注解，通过动态代理的方式代理包含注解的类。
  */
-public class RcpServiceProcessor
-        implements InstantiationAwareBeanPostProcessor, ApplicationContextAware {
+public class RcpServiceProcessor implements InstantiationAwareBeanPostProcessor, ApplicationContextAware {
 
     private ApplicationContext context;
 
     @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName)
-            throws BeansException {
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
         // 判断类里是否有 @RpcService 注解
         Class<?> clazz = context.getType(beanName);

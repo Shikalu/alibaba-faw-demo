@@ -9,6 +9,13 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 public class RpcClientHandler extends SimpleChannelInboundHandler<String> {
+    /**
+     * 通道读事件
+     *
+     * @param ctx ctx
+     * @param msg 味精
+     * @author 鹿胜宝
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
 

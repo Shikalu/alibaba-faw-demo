@@ -19,6 +19,13 @@ public class RcpServerHandler extends SimpleChannelInboundHandler<String> {
         this.applicationContext = applicationContext;
     }
 
+    /**
+     * 读就绪事件
+     *
+     * @param ctx ctx
+     * @param msg 味精
+     * @author 鹿胜宝
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         System.out.println(msg);
@@ -40,6 +47,7 @@ public class RcpServerHandler extends SimpleChannelInboundHandler<String> {
             return;
         }
 
+        // 业务逻辑，通过反射执行请求的方法
         try {
             String[] parameterTypeStrings = requestBean.getParameterTypeStrings();
             Class<?>[] parameterTypes = String2Class.string2Class(parameterTypeStrings);
@@ -48,15 +56,12 @@ public class RcpServerHandler extends SimpleChannelInboundHandler<String> {
             String clazzName = requestBean.getClazzName();
             Class<?> aClass = Class.forName(clazzName);
             Object bean = applicationContext.getBean(aClass);
-            Method method =
-                    aClass.getMethod(requestBean.getMethodName(), requestBean.getParameterTypes());
-
+            Method method = aClass.getMethod(requestBean.getMethodName(), requestBean.getParameterTypes());
             Object invoke = method.invoke(bean, requestBean.getParameters());
 
             RpcResponse rpcResponse = new RpcResponse();
             rpcResponse.setRequestId(requestBean.getRequestId());
             rpcResponse.setReturnValue(invoke);
-
             String s = JSONUtil.toJsonStr(rpcResponse);
 
             ctx.channel().writeAndFlush(s);
@@ -65,6 +70,12 @@ public class RcpServerHandler extends SimpleChannelInboundHandler<String> {
         }
     }
 
+    /**
+     * 通道注册事件
+     *
+     * @param ctx ctx
+     * @author 鹿胜宝
+     */
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
         System.out.println("active");

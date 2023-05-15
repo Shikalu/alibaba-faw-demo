@@ -1,9 +1,6 @@
 package com.ebanma.cloud.rpc.model;
 
 import com.ebanma.cloud.rpc.model.constant.ConstantPool;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 

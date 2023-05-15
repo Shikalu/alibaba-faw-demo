@@ -135,7 +135,7 @@ public class NettyClientGroup implements ApplicationContextAware {
     }
 
     /**
-     * 给容器填充属性
+     * 给容器填充属性？获取上下文回调到当前类
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

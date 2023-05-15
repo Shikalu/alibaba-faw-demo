@@ -9,6 +9,13 @@ import io.netty.handler.timeout.IdleStateEvent;
 
 public class IdleStateTriggerHandler extends SimpleChannelInboundHandler<String> {
 
+    /**
+     * 通道读事件
+     *
+     * @param ctx ctx
+     * @param s   年代
+     * @author 鹿胜宝
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String s) throws Exception {
         ctx.channel().writeAndFlush(s);

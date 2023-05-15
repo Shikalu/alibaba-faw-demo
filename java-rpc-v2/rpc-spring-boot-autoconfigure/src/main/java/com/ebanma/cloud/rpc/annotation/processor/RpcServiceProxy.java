@@ -14,6 +14,12 @@ import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * RPC服务的动态代理，配合Processor使用
+ *
+ * @author 鹿胜宝
+ * @date 2023/05/15
+ */
 public class RpcServiceProxy<T> implements InvocationHandler {
 
     private Class<T> proxyInterface;
@@ -23,8 +29,7 @@ public class RpcServiceProxy<T> implements InvocationHandler {
 
     private String serviceName;
 
-    public RpcServiceProxy(
-            Class<T> proxyInterface, String serviceName, NettyClientGroup nettyClient) {
+    public RpcServiceProxy( Class<T> proxyInterface, String serviceName, NettyClientGroup nettyClient) {
         this.serviceName = serviceName;
         this.proxyInterface = proxyInterface;
         this.nettyClientGroup = nettyClient;

@@ -19,16 +19,9 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 // 让使用了@ConfigurationProperties注解的类生效,并且将该类注入到IOC容器中,交由IOC容器进行管理  
-@EnableConfigurationProperties({
-        RpcProperties.class,
-        RpcServerProperties.class,
-        RpcClientProperties.class
-})
+@EnableConfigurationProperties({RpcProperties.class, RpcServerProperties.class, RpcClientProperties.class})
 // 如果application.yml或者properties中没有rpc.register-address属性，则此类RpcAutoConfiguration不注入IOC容器  
-@ConditionalOnProperty(
-        prefix = "rpc",
-        name = "register-address",
-        matchIfMissing = false)
+@ConditionalOnProperty(prefix = "rpc", name = "register-address", matchIfMissing = false)
 public class RpcAutoConfiguration {
 
     /**

@@ -3,7 +3,6 @@ package com.ebanma.cloud.rpc.utils.zk;
 import cn.hutool.json.JSONUtil;
 import com.ebanma.cloud.rpc.config.properties.RpcProperties;
 import com.ebanma.cloud.rpc.model.ProviderBean;
-import lombok.Data;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs;
@@ -94,15 +93,14 @@ public class ZKServer implements ApplicationContextAware {
     }
 
     /**
-     * 创建完改对象后创建目录
+     * 创建完该对象后创建目录
      */
-    @PostConstruct
+    @PostConstruct //当依赖注入完成后用于执行初始化的方法，并且只会被执行一次，   Constructor(构造方法) -> @Autowired(依赖注入) -> @PostConstruct(注释的初始化方法)
     public void postConstruct() {
         // 初始化
         init();
         // 在zk上创建目录
         createRpcPath();
-
         // 给某个目录添加监听器
         addWatcher();
     }
@@ -160,6 +158,13 @@ public class ZKServer implements ApplicationContextAware {
         }
     }
 
+    /**
+     * 获取子目录节点列表
+     *
+     * @param path 路径
+     * @return {@link List }<{@link String }>
+     * @author 鹿胜宝
+     */
     public List<String> getChild(String path) throws Exception {
         List<String> children = zk.getChildren(path, true);
         return children;
@@ -175,10 +180,18 @@ public class ZKServer implements ApplicationContextAware {
         String s = JSONUtil.toJsonStr(providerBean);
     }
 
+
+    /**
+     * 创建永久路径
+     *
+     * @param path 路径
+     * @param data 数据
+     * @return {@link String }
+     * @author 鹿胜宝
+     */
     public String createPathPermanent(String path, String data) throws Exception {
         if (zk.exists(path, true) == null) {
-            String mkPath =
-                    zk.create(path, data.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            String mkPath = zk.create(path, data.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             System.out.println("Success create path: " + mkPath);
             return mkPath;
         } else {
@@ -186,10 +199,17 @@ public class ZKServer implements ApplicationContextAware {
         }
     }
 
+    /**
+     * 创建临时路径
+     *
+     * @param path 路径
+     * @param data 数据
+     * @return {@link String }
+     * @author 鹿胜宝
+     */
     public String createPathTemp(String path, String data) throws Exception {
         if (zk.exists(path, true) == null) {
-            String mkPath =
-                    zk.create(path, data.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+            String mkPath = zk.create(path, data.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
             System.out.println("Success create path: " + mkPath);
             return mkPath;
         } else {
@@ -197,6 +217,7 @@ public class ZKServer implements ApplicationContextAware {
         }
     }
 
+    //继承了ApplicationContextAware接口，可以对当前bean传入对应的Spring上下文。
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.rpcProperties = applicationContext.getBean(RpcProperties.class);
